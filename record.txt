@@ -1,0 +1,5 @@
+1. 问题：
+        在order客户端向eureka服务器注册的时候，老是注册失败，返回request error 和拒绝连接
+       状态：已解决
+       原因：我在创建eureka服务器的时候，用的是8080端口，而不是8761
+       解决办法：在order的配置文件bootstrap.xml中加eureka.client.service-url:defaultZone: 加eureka配置文件中的defaultZone
