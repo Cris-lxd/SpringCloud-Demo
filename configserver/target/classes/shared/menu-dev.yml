@@ -1,0 +1,20 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: menu
+  datasource:
+    url: jdbc:mysql://localhost:3306/orderingsystem?useSSL=true&serverTimezone=UTC&useUnicode=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    prefer-ip-address: true
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml
+  type-aliases-package: com.lxd.entity
