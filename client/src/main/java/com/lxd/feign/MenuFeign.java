@@ -1,0 +1,19 @@
+package com.lxd.feign;/*
+ *  create by 20224
+ *  2020/5/15
+ * */
+
+import com.lxd.entity.Menu;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+
+@FeignClient(value = "menu")
+public interface MenuFeign {
+
+    @GetMapping("/menu/findAll/{index}/{limit}")
+    public List<Menu> findAll(@PathVariable("index") int index, @PathVariable("limit") int limit);
+
+}
