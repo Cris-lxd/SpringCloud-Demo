@@ -2,8 +2,16 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lxd.repository.MenuRepository">
+    
+    <resultMap id="menuMap" type="Menu">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="price" property="price"></result>
+        <result column="flavor" property="flavor"></result>
+        <association property="type" select="com.lxd.repository.TypeRepository.findById" column="tid"></association>
+    </resultMap>
     <!--查询全部-->
-    <select id="findAll" resultType="Menu">
+    <select id="findAll" resultMap="menuMap">
         SELECT * FROM t_menu limit #{param1},#{param2}
     </select>
 

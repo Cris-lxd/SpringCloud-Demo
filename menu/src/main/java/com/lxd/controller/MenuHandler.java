@@ -4,6 +4,7 @@ package com.lxd.controller;/*
  * */
 
 import com.lxd.entity.Menu;
+import com.lxd.entity.MenuVO;
 import com.lxd.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +20,7 @@ import java.util.List;
 public class MenuHandler {
     @Value("${server.port}")
     private String port;
-    @Autowired
+    @Autowired(required = false)
     private MenuRepository menuRepository;
 
     @GetMapping("/index")
@@ -28,7 +29,9 @@ public class MenuHandler {
     }
 
     @GetMapping("/findAll/{index}/{limit}")
-    public List<Menu> findAll(@PathVariable("index") int index, @PathVariable("limit") int limit){
-        return menuRepository.findAll(index,limit);
+    public MenuVO findAll(@PathVariable("index") int index, @PathVariable("limit") int limit){
+        List<Menu> list= menuRepository.findAll(index,limit);
+        MenuVO menuVO = new MenuVO(0,"",menuRepository.count(),list);
+        return menuVO;
     }
 }
